@@ -1,0 +1,115 @@
+1)
+val exampleNums = mutableListOf<Int>(5,2,1,2,4,3,6,1,5,6,3)
+
+fun singleNumber(list: List<Int>): Int{
+    var number = 0
+    for(nums in list){
+        number = number xor nums
+    }
+    return number
+}
+
+2)
+ val exampleNum = 531
+    
+   fun minSplit(amount: Int): Int{
+      var sum = amount
+      var coinAmount = 0
+      val coins = listOf(50,20,10,5,1)
+      
+      for(coin in coins){
+          while(sum>= coin){
+              coinAmount += 1
+              sum -= coin
+          }          
+      }
+       return coinAmount
+   }
+   println(minSplit(exampleNum))
+}
+
+
+3)
+
+fun main() {
+    val exampleArray = intArrayOf(1,2,4,5,6,7) // ar sheicavs 3-s
+    
+    fun notContains(arr : IntArray): Int{
+        val exampleList = arr.toList()
+        val numList = (arr[0]..arr.last()).toList()
+       
+      	for(num in numList){
+            if(num !in exampleList){
+                return num
+            }
+         
+        }
+        return 0
+    }
+    println(notContains(exampleArray))
+     
+    }
+
+4)
+fun main() {
+    val a = "1010"
+    val b = "1011"
+    fun addBinary(a: String , b: String): String{
+        val num1= a.toInt(2)
+        val num2= b.toInt(2)
+        
+        return Integer.toBinaryString(num1+num2)
+    }
+    
+    println(addBinary(a,b))
+}
+
+
+5)
+
+fun main() {
+   fun stairClimb(n: Int): Int{
+       var one = 1
+       var two = 1
+       
+      for(i in 1 until n){
+          var tmp = one
+          one = one + two
+          two = tmp
+      }
+      
+     return one
+   }
+   
+   
+   println(stairClimb(5))
+}
+
+ 6)
+class CustomDataStructure<T> {
+    private val elements = mutableListOf<T>()
+    private val indexMap = mutableMapOf<T, Int>()
+
+    fun add(element: T) {
+        if (!indexMap.containsKey(element)) {
+            val index = elements.size
+            elements.add(element)
+            indexMap[element] = index
+        }
+    }
+
+    fun remove(element: T) {
+        if (indexMap.containsKey(element)) {
+            val indexToRemove = indexMap[element]!!
+            elements.removeAt(indexToRemove)
+            indexMap.remove(element)
+            for (i in indexToRemove until elements.size) {
+                indexMap[elements[i]] = i
+            }
+        }
+    }
+
+    fun size(): Int {
+        return elements.size
+    }
+}
